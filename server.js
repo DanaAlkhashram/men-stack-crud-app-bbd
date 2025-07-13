@@ -2,12 +2,18 @@
 // We begin by loading Express
 const express = require('express');
 const app = express();
+const path = require('path');
 
-// GET ----------------------------------------------------------------- 
+// MIDDLEWARE ----------------------------------------------------------------- 
+app.use(express.static(path.join(__dirname, "public")));
+
+// GET / HOME ----------------------------------------------------------------- 
 // ( path , callback)
+// they entent to have folder called views
 app.get('/',(req, res)=>{
-    res.send('hello')
-})
+    res.render('index.ejs')
+});
+
 
 // live ----------------------------------------------------------------- 
 app.listen(3000, () => {
