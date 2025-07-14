@@ -1,4 +1,4 @@
-const mongoose = require('mongose');
+const mongoose = require('mongoose')
 
 const businessSchema = new mongoose.Schema(
     { //object
@@ -10,12 +10,11 @@ const businessSchema = new mongoose.Schema(
         website: String,
         isVerified: {
             type: Boolean,
-            defualt: false,
-        }, 
-    },{ //option
-        timestamps: true,
-    }
+            default: false
+        }
+    }, { //option
+        timestamps: true }
 )
 
-const Business = mongoose.model('Business'.businessSchema);
-model.exports = Business;
+const Business = mongoose.model('Business', businessSchema)
+module.exports = Business
