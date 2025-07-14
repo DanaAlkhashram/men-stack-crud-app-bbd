@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const businessSchema = new mongoose.Schema(
-    { //object
+    { //objectg
         name: String,
         category: String,
         description: String,
