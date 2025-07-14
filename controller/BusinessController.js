@@ -2,9 +2,13 @@ const express = require('express');
 const router = express.Router();
 const Business = require('../models/business');
 
+// ALL ROUTES IN THIS FILE HAS /businesses " / "
 
 // rest route 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    const allBusinesses = await Business.find() //emprt () will bring all data
+    console.log('allBusinesses', allBusinesses)
+    res.render('Businesses/index.ejs', { allBusinesses: allBusinesses})
 });
 
 // RENDER NEW BUSINESS
@@ -26,6 +30,10 @@ router.post('/', async (req, res) => {
     res.redirect('/businesses/new')
 })
 
-
+// SHOW ONE BUSINESS /: params
+router.get('/:businessId', async(req, res)=>{
+  const foundBusiness = await Business.findById(req.params.businessId)
+  res.render('businesses/show.ejs',{foundBusiness: foundBusiness})
+})
 
 module.exports = router;
