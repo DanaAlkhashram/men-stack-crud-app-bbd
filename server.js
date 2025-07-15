@@ -6,8 +6,9 @@ const express = require('express');
 const { default: mongoose } = require('mongoose');
 const app = express();
 const path = require('path');
-
-// CONTROLLERS
+const methodOverride = require ("method-override")
+const morgan = require("morgan")
+    // CONTROLLERS
 const businessController =require('./controller/BusinessController');
 
 
@@ -20,6 +21,11 @@ mongoose.connection.on('connected', () => {
 // MIDDLEWARE 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({extended:false }));
+    // CHANGE METHOD 
+app.use(methodOverride('_method'))
+    // TO SHOW THE PATH IN TERMINAL
+app.use(morgan('dev'))
+
 
 // GET / HOME 
 // ( path , callback)

@@ -30,10 +30,18 @@ router.post('/', async (req, res) => {
     res.redirect('/businesses/new')
 })
 
-// SHOW ONE BUSINESS /: params
-router.get('/:businessId', async(req, res)=>{
-  const foundBusiness = await Business.findById(req.params.businessId)
-  res.render('businesses/show.ejs',{foundBusiness: foundBusiness})
+// SHOW ONE BUSINESS /:PARAMS
+router.get('/:businessId', async (req, res) => {
+    const foundBusiness = await Business.findById(req.params.businessId)
+    res.render('businesses/show.ejs', { foundBusiness: foundBusiness })
 })
+
+// DELETE
+router.delete('/:businessId', async(req, res)=>{
+    await Business.findByIdAndDelete(req.params.businessId)
+    res.redirect('/businesses')
+})
+
+
 
 module.exports = router;
